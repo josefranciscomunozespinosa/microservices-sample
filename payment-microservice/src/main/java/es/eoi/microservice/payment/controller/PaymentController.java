@@ -1,9 +1,11 @@
 package es.eoi.microservice.payment.controller;
 
+import es.eoi.common.dto.StudentModel;
 import es.eoi.common.dto.payment.PaymentModel;
 import es.eoi.microservice.payment.dto.asembler.PaymentModelAssembler;
 import es.eoi.microservice.payment.entity.payment.PaymentEntity;
 import es.eoi.microservice.payment.repository.PaymentRepository;
+import es.eoi.microservice.payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
@@ -13,10 +15,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class PaymentController {
+
+	@Autowired
+	private PaymentService paymentService;
 
 	@Autowired
 	private PaymentRepository paymentRepository;
@@ -25,28 +29,38 @@ public class PaymentController {
 	PaymentModelAssembler paymentModelAssembler;
 
 
-	@GetMapping("/api/Payments")
-	public ResponseEntity<CollectionModel<PaymentModel>> getAllPayments()
+	@GetMapping("/api/payments/pending")
+	public ResponseEntity<CollectionModel<PaymentModel>> getAllPendingPayments()
 	{
-		List<PaymentEntity> PaymentEntityList = paymentRepository.findAll();
+		List<PaymentEntity> paymentEntityList = paymentService.getAllPendingPayments();
 		return new ResponseEntity<>(
-				paymentModelAssembler.toCollectionModel(PaymentEntityList),
+				paymentModelAssembler.toCollectionModel(paymentEntityList),
 				HttpStatus.OK);
 	}
 
-
-	@GetMapping("/api/Payment/{id}")
+	@GetMapping("/api/payment/id/{id}")
 	public ResponseEntity<PaymentModel> getPaymentById(@PathVariable("id") Long id)
 	{
-		return paymentRepository.findById(id)
-				.map(paymentModelAssembler::toModel)
-				.map(ResponseEntity::ok)
-				.orElse(ResponseEntity.notFound().build());
+		PaymentEntity paymentEntity = paymentService.findById(id);
+
+		return ResponseEntity.ok().body(paymentModelAssembler.toModel(paymentEntity));
 	}
 
-	@PostMapping("/api/Payments")
-	public ResponseEntity<PaymentModel> createPaymentApi(@RequestBody PaymentEntity Payment) {
-		PaymentEntity savedPayment = paymentRepository.save(Payment);
+	@GetMapping("/api/payment/reference/{reference}")
+	public ResponseEntity<PaymentModel> getPaymentByReference(@PathVariable("reference") String reference)
+	{
+		PaymentEntity paymentEntity = paymentService.getFirstByReference(reference);
+
+		return ResponseEntity.ok().body(paymentModelAssembler.toModel(paymentEntity));
+	}
+
+	@PostMapping("/api/payments")
+	public ResponseEntity<PaymentModel> createPaymentApi(@RequestBody StudentModel studentModel) {
+		if(studentModel==null){
+			throw new IllegalArgumentException("Wrong params");
+		}
+
+		PaymentEntity savedPayment = paymentService.generatePaymentData(studentModel);
 
 		final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri()
 				.path("/{id}")
@@ -56,18 +70,12 @@ public class PaymentController {
 		return ResponseEntity.created(location).body(paymentModelAssembler.toModel(savedPayment));
 	}
 
-	@PutMapping("/api/Payments/{id}")
-	public ResponseEntity<PaymentModel> updatePaymentApi(@RequestBody PaymentEntity Payment, @PathVariable long id) {
+	@PutMapping("/api/payments/reference/{reference}")
+	public ResponseEntity<PaymentModel> pay(@PathVariable("reference") String reference) {
 
-		Optional<PaymentEntity> PaymentOptional = paymentRepository.findById(id);
+		PaymentEntity payment = paymentService.pay(reference);
 
-		if (!PaymentOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-
-		Payment.setId(id);
-
-		PaymentEntity savedPayment = paymentRepository.save(Payment);
+		PaymentEntity savedPayment = paymentRepository.save(payment);
 		return ResponseEntity.ok().body(paymentModelAssembler.toModel(savedPayment));
 	}
 }

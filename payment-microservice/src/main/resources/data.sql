@@ -1,2 +1,2 @@
 
-insert into payment (id, name, payed, price, reference) values(10001,'PAYMENT001', true, 803.88 ,'E1234567');
+insert into payment (id, name, payed, price, reference) values(4001,'Jose Francisco', true, 803.88 ,'20210905_E1234567');

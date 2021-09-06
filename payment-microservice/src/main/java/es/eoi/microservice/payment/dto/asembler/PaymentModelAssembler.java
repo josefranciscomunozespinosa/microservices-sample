@@ -19,18 +19,19 @@ public class PaymentModelAssembler extends RepresentationModelAssemblerSupport<P
     @Override
     public PaymentModel toModel(PaymentEntity entity) {
 
-        PaymentModel PaymentModel = instantiateModel(entity);
+        PaymentModel paymentModel = instantiateModel(entity);
 
-        PaymentModel.add(linkTo(
+        paymentModel.add(linkTo(
                 methodOn(PaymentController.class)
                         .getPaymentById(entity.getId()))
                 .withSelfRel());
 
-        PaymentModel.setId(entity.getId());
-        PaymentModel.setName(entity.getName());
-        PaymentModel.setPayed(entity.getPayed());
-        PaymentModel.setReference(entity.getReference());
-        return PaymentModel;
+        paymentModel.setId(entity.getId());
+        paymentModel.setName(entity.getName());
+        paymentModel.setPayed(entity.getPayed());
+        paymentModel.setReference(entity.getReference());
+        paymentModel.setPrice(entity.getPrice());
+        return paymentModel;
     }
 
 }
