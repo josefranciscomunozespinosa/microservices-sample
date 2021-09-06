@@ -2,10 +2,10 @@ package es.eoi.microservice.university.dto.asembler;
 
 import es.eoi.common.dto.CourseModel;
 import es.eoi.common.dto.StudentModel;
-import es.eoi.common.entity.CourseEntity;
-import es.eoi.common.entity.StudentEntity;
 import es.eoi.microservice.university.controller.CourseController;
 import es.eoi.microservice.university.controller.StudentController;
+import es.eoi.microservice.university.entity.CourseEntity;
+import es.eoi.microservice.university.entity.StudentEntity;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;

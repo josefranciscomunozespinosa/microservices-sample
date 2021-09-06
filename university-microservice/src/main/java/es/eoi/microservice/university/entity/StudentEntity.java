@@ -1,4 +1,4 @@
-package es.eoi.common.entity;
+package es.eoi.microservice.university.entity;
 
 import lombok.*;
 
@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "courses")
-@Entity
+@Entity(name = "student")
 public class StudentEntity implements Serializable {
 
 	@Id

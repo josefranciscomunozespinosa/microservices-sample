@@ -1,7 +1,6 @@
-package es.eoi.common.entity.payment;
+package es.eoi.microservice.payment.entity.payment;
 
 import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
+@Entity(name = "payment")
 public class PaymentEntity {
 
 	@Id

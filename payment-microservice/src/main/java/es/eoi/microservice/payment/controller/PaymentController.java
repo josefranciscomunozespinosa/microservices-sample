@@ -1,9 +1,9 @@
-package es.eoi.microservice.university.controller;
+package es.eoi.microservice.payment.controller;
 
 import es.eoi.common.dto.payment.PaymentModel;
-import es.eoi.common.entity.payment.PaymentEntity;
-import es.eoi.microservice.university.dto.asembler.PaymentModelAssembler;
-import es.eoi.microservice.university.repository.PaymentRepository;
+import es.eoi.microservice.payment.dto.asembler.PaymentModelAssembler;
+import es.eoi.microservice.payment.entity.payment.PaymentEntity;
+import es.eoi.microservice.payment.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;

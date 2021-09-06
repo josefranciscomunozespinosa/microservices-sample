@@ -1,8 +1,8 @@
 package es.eoi.microservice.university.controller;
 
 import es.eoi.common.dto.StudentModel;
-import es.eoi.common.entity.StudentEntity;
 import es.eoi.microservice.university.dto.asembler.StudentModelAssembler;
+import es.eoi.microservice.university.entity.StudentEntity;
 import es.eoi.microservice.university.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;

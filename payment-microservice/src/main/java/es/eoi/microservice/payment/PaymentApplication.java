@@ -1,10 +1,8 @@
-package es.eoi.microservice.university;
+package es.eoi.microservice.payment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@EntityScan("es.eoi.microservices.common.entity")
 @SpringBootApplication
 public class PaymentApplication {
 

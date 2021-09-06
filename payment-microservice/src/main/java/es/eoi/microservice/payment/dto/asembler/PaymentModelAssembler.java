@@ -1,15 +1,10 @@
-package es.eoi.microservice.university.dto.asembler;
+package es.eoi.microservice.payment.dto.asembler;
 
 import es.eoi.common.dto.payment.PaymentModel;
-import es.eoi.common.entity.payment.PaymentEntity;
-import es.eoi.microservice.university.controller.PaymentController;
+import es.eoi.microservice.payment.controller.PaymentController;
+import es.eoi.microservice.payment.entity.payment.PaymentEntity;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;

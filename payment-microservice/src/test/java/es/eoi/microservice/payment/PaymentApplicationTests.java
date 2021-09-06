@@ -1,4 +1,4 @@
-package es.eoi.microservice.university;
+package es.eoi.microservice.payment;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
