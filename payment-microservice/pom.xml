@@ -8,7 +8,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>payment-microservice</name>
+	<name>Payment microservice</name>
 	<description>Payment Spring Boot REST</description>
 
 	<parent>

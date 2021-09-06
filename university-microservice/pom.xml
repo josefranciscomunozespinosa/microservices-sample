@@ -8,7 +8,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>university-microservice</name>
+	<name>University Microservice</name>
 	<description>University Spring Boot REST</description>
 
 	<parent>

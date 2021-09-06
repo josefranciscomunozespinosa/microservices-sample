@@ -1,2 +1,2 @@
 
-insert into payment values(10001,'Jose Francisco', 'E1234567');
+#insert into payment values(10001,'Jose Francisco', 'E1234567');
