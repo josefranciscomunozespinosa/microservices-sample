@@ -38,6 +38,7 @@ public class PaymentController {
 				HttpStatus.OK);
 	}
 
+	/*
 	@GetMapping("/api/payment/id/{id}")
 	public ResponseEntity<PaymentModel> getPaymentById(@PathVariable("id") Long id)
 	{
@@ -45,6 +46,7 @@ public class PaymentController {
 
 		return ResponseEntity.ok().body(paymentModelAssembler.toModel(paymentEntity));
 	}
+	*/
 
 	@GetMapping("/api/payment/reference/{reference}")
 	public ResponseEntity<PaymentModel> getPaymentByReference(@PathVariable("reference") String reference)

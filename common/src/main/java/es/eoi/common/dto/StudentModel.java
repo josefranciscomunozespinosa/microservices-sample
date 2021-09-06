@@ -3,8 +3,6 @@ package es.eoi.common.dto;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.List;
 
 @Data
@@ -13,8 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class StudentModel extends RepresentationModel<StudentModel> {
-	@Id
-	@GeneratedValue
+
 	private Long id;
 	private String name;
 	private String passportNumber;

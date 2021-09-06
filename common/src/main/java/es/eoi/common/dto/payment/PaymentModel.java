@@ -1,12 +1,8 @@
 package es.eoi.common.dto.payment;
 
-import es.eoi.common.dto.CourseModel;
 import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.hateoas.RepresentationModel;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Data
 @Builder
@@ -15,8 +11,6 @@ import javax.persistence.Id;
 @EqualsAndHashCode(callSuper = false)
 public class PaymentModel extends RepresentationModel<PaymentModel> {
 
-	@Id
-	@GeneratedValue
 	@JsonIgnore
 	private Long id;
 

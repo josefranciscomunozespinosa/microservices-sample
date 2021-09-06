@@ -1,9 +1,10 @@
 package es.eoi.microservice.university.controller;
 
 import es.eoi.common.dto.CourseModel;
+import es.eoi.common.dto.StudentModel;
 import es.eoi.microservice.university.dto.asembler.CourseModelAssembler;
 import es.eoi.microservice.university.entity.CourseEntity;
-import es.eoi.microservice.university.repository.CourseRepository;
+import es.eoi.microservice.university.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
@@ -13,13 +14,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class CourseController {
 
 	@Autowired
-	private CourseRepository courseRepository;
+	CourseService courseService;
 
 	@Autowired
 	CourseModelAssembler courseModelAssembler;
@@ -28,7 +28,7 @@ public class CourseController {
 	@GetMapping("/api/courses")
 	public ResponseEntity<CollectionModel<CourseModel>> getAllCourses()
 	{
-		List<CourseEntity> courseEntityList = courseRepository.findAll();
+		List<CourseEntity> courseEntityList = courseService.findAll();
 		return new ResponseEntity<>(
 				courseModelAssembler.toCollectionModel(courseEntityList),
 				HttpStatus.OK);
@@ -38,23 +38,22 @@ public class CourseController {
 	@GetMapping("/api/course/{id}")
 	public ResponseEntity<CourseModel> getCourseById(@PathVariable("id") Long id)
 	{
-		return courseRepository.findById(id)
-				.map(courseModelAssembler::toModel)
-				.map(ResponseEntity::ok)
-				.orElse(ResponseEntity.notFound().build());
+		CourseEntity courseEntity = courseService.findById(id);
+
+		return ResponseEntity.ok().body(courseModelAssembler.toModel(courseEntity));
 	}
 
 
 	@DeleteMapping("/api/courses/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void deleteCourseApi(@PathVariable long id) {
-		courseRepository.deleteById(id);
+		courseService.deleteById(id);
 	}
 
 
 	@PostMapping("/api/courses")
 	public ResponseEntity<CourseModel> createCourseApi(@RequestBody CourseEntity course) {
-		CourseEntity savedCourse = courseRepository.save(course);
+		CourseEntity savedCourse = courseService.save(course);
 
 		final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri()
 				.path("/{id}")
@@ -67,15 +66,9 @@ public class CourseController {
 	@PutMapping("/api/courses/{id}")
 	public ResponseEntity<CourseModel> updateCourseApi(@RequestBody CourseEntity course, @PathVariable long id) {
 
-		Optional<CourseEntity> courseOptional = courseRepository.findById(id);
+		CourseEntity savedCourse = courseService.update(course, id);
 
-		if (!courseOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-
-		course.setId(id);
-
-		CourseEntity savedCourse = courseRepository.save(course);
 		return ResponseEntity.ok().body(courseModelAssembler.toModel(savedCourse));
 	}
+
 }
