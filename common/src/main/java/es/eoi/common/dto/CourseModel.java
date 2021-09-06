@@ -1,0 +1,24 @@
+package es.eoi.common.dto;
+
+import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.List;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+public class CourseModel extends RepresentationModel<CourseModel> {
+
+	@Id
+	@GeneratedValue
+	private Long id;
+	private String name;
+	private String description;
+
+	private List<StudentModel> students;
+}
