@@ -23,10 +23,10 @@ public class PaymentModelAssembler extends RepresentationModelAssemblerSupport<P
 
         paymentModel.add(linkTo(
                 methodOn(PaymentController.class)
-                        .getPaymentById(entity.getId()))
+                        .getPaymentByReference(entity.getReference()))
                 .withSelfRel());
 
-        paymentModel.setId(entity.getId());
+        //paymentModel.setId(entity.getId());
         paymentModel.setName(entity.getName());
         paymentModel.setPayed(entity.getPayed());
         paymentModel.setReference(entity.getReference());

@@ -1,0 +1,92 @@
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+globals:
+  properties:
+    configurations:
+      # Translations
+      labels:
+        en:
+          language.label: "English (en)"
+          general.messages.session.expired: "Your session has expired. Please note that non-finalized applications are not processed further"
+        es:
+          language.label: "Español (es)"
+          general.messages.session.expired: "Su sesión ha expirado. Por favor..."
+      # colours
+      colours:
+        en:
+          - White
+          - Black
+          - Blue
+          - Red
+        es:
+          - Blanco
+          - Negro
+          - Azul
+          - Rojo
+        fi:
+          - Valkoinen
+          - Musta
+          - Sininen
+          - Punainen
+        sv:
+          - Vitt
+          - Svart
+          - Blått
+          - Rött
+      defConfiguration:
+        firstLanguages:
+          - key: fi
+            label: language.Finish
+            enabled: true
+          - key: sv
+            label: language.Swedish
+            enabled: true
+          - key: en
+            label: language.English
+            enabled: true
+        secondLanguages:
+          - key: fi
+            label: language.Finish
+            enabled: true
+          - key: sv
+            label: language.Swedish
+            enabled: true
+        translationLanguages:
+          - key: bg
+            enabled: false
+            label: translationlanguages.BULGARIAN
+          - key: da
+            enabled: false
+            label: translationlanguages.DANISH
+          - key: de
+            enabled: false
+            label: translationlanguages.GERMAN
+          - key: el
+            enabled: false
+            label: translationlanguages.GREEK
+          - key: en
+            enabled: true
+            label: translationlanguages.ENGLISH
+          - key: es
+            enabled: false
+            label: translationlanguages.SPANISH
+          - key: et
+            enabled: false
+            label: translationlanguages.ESTONIAN
+          - key: fi
+            enabled: true
+            label: translationlanguages.FINISH
+          - key: sv
+            enabled: true
+            label: translationlanguages.SWEDISH

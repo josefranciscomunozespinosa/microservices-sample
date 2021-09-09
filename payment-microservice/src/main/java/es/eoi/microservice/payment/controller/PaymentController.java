@@ -38,7 +38,7 @@ public class PaymentController {
 				HttpStatus.OK);
 	}
 
-	/*
+	/*	We don't want to expose the id to the external world
 	@GetMapping("/api/payment/id/{id}")
 	public ResponseEntity<PaymentModel> getPaymentById(@PathVariable("id") Long id)
 	{
