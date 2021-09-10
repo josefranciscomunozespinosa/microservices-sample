@@ -46,12 +46,15 @@ globals:
           - Rött
       defConfiguration:
         firstLanguages:
+          - key: es
+            label: language.Spanish
+            enabled: true
           - key: fi
             label: language.Finish
-            enabled: true
+            enabled: false
           - key: sv
             label: language.Swedish
-            enabled: true
+            enabled: false
           - key: en
             label: language.English
             enabled: true
@@ -61,6 +64,9 @@ globals:
             enabled: true
           - key: sv
             label: language.Swedish
+            enabled: false
+          - key: it
+            label: language.Italian
             enabled: true
         translationLanguages:
           - key: bg
