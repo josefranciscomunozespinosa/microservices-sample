@@ -3,7 +3,6 @@ package es.eoi.microservice.university.service.impl;
 import es.eoi.common.exceptions.ResourceNotFoundException;
 import es.eoi.microservice.university.entity.CourseEntity;
 import es.eoi.microservice.university.repository.CourseRepository;
-import es.eoi.microservice.university.repository.StudentRepository;
 import es.eoi.microservice.university.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,6 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     private CourseRepository courseRepository;
-
-    @Autowired
-    private StudentRepository studentRepository;
 
     @Override
     public List<CourseEntity> findAll() {

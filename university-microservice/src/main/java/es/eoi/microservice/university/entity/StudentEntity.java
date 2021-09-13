@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -19,6 +20,8 @@ public class StudentEntity implements Serializable {
 	private Long id;
 	private String name;
 	private String passportNumber;
+	private String paymentReference;
+	private Date paymentDate;
 
 
 	@ManyToMany(cascade= CascadeType.ALL)

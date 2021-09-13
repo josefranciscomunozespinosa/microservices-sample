@@ -37,6 +37,8 @@ public class StudentModelAssembler extends RepresentationModelAssemblerSupport<S
         studentModel.setId(entity.getId());
         studentModel.setName(entity.getName());
         studentModel.setPassportNumber(entity.getPassportNumber());
+        studentModel.setPaymentReference(entity.getPaymentReference());
+        studentModel.setPaymentDate(entity.getPaymentDate());
 
         studentModel.setCourses(toCourseModel(entity.getCourses()));
         return studentModel;
